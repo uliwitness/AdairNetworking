@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		553B6F6123805089002A756F /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553B6F6023805089002A756F /* main.swift */; };
+		553B6F6E238050DB002A756F /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553B6F6D238050DB002A756F /* main.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -20,15 +21,33 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
+		553B6F69238050DB002A756F /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		553B6F5D23805089002A756F /* AdairNetworking */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AdairNetworking; sourceTree = BUILT_PRODUCTS_DIR; };
+		553B6F5D23805089002A756F /* AdairServer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AdairServer; sourceTree = BUILT_PRODUCTS_DIR; };
 		553B6F6023805089002A756F /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		553B6F6B238050DB002A756F /* AdairClient */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AdairClient; sourceTree = BUILT_PRODUCTS_DIR; };
+		553B6F6D238050DB002A756F /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		553B6F5A23805089002A756F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		553B6F68238050DB002A756F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -41,7 +60,8 @@
 		553B6F5423805089002A756F = {
 			isa = PBXGroup;
 			children = (
-				553B6F5F23805089002A756F /* AdairNetworking */,
+				553B6F5F23805089002A756F /* AdairServer */,
+				553B6F6C238050DB002A756F /* AdairClient */,
 				553B6F5E23805089002A756F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -49,25 +69,34 @@
 		553B6F5E23805089002A756F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				553B6F5D23805089002A756F /* AdairNetworking */,
+				553B6F5D23805089002A756F /* AdairServer */,
+				553B6F6B238050DB002A756F /* AdairClient */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		553B6F5F23805089002A756F /* AdairNetworking */ = {
+		553B6F5F23805089002A756F /* AdairServer */ = {
 			isa = PBXGroup;
 			children = (
 				553B6F6023805089002A756F /* main.swift */,
 			);
-			path = AdairNetworking;
+			path = AdairServer;
+			sourceTree = "<group>";
+		};
+		553B6F6C238050DB002A756F /* AdairClient */ = {
+			isa = PBXGroup;
+			children = (
+				553B6F6D238050DB002A756F /* main.swift */,
+			);
+			path = AdairClient;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		553B6F5C23805089002A756F /* AdairNetworking */ = {
+		553B6F5C23805089002A756F /* AdairServer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 553B6F6423805089002A756F /* Build configuration list for PBXNativeTarget "AdairNetworking" */;
+			buildConfigurationList = 553B6F6423805089002A756F /* Build configuration list for PBXNativeTarget "AdairServer" */;
 			buildPhases = (
 				553B6F5923805089002A756F /* Sources */,
 				553B6F5A23805089002A756F /* Frameworks */,
@@ -77,9 +106,26 @@
 			);
 			dependencies = (
 			);
-			name = AdairNetworking;
+			name = AdairServer;
 			productName = AdairNetworking;
-			productReference = 553B6F5D23805089002A756F /* AdairNetworking */;
+			productReference = 553B6F5D23805089002A756F /* AdairServer */;
+			productType = "com.apple.product-type.tool";
+		};
+		553B6F6A238050DB002A756F /* AdairClient */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 553B6F6F238050DB002A756F /* Build configuration list for PBXNativeTarget "AdairClient" */;
+			buildPhases = (
+				553B6F67238050DB002A756F /* Sources */,
+				553B6F68238050DB002A756F /* Frameworks */,
+				553B6F69238050DB002A756F /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AdairClient;
+			productName = AdairClient;
+			productReference = 553B6F6B238050DB002A756F /* AdairClient */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -93,6 +139,9 @@
 				ORGANIZATIONNAME = "Uli Kusterer";
 				TargetAttributes = {
 					553B6F5C23805089002A756F = {
+						CreatedOnToolsVersion = 11.0;
+					};
+					553B6F6A238050DB002A756F = {
 						CreatedOnToolsVersion = 11.0;
 					};
 				};
@@ -110,7 +159,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				553B6F5C23805089002A756F /* AdairNetworking */,
+				553B6F5C23805089002A756F /* AdairServer */,
+				553B6F6A238050DB002A756F /* AdairClient */,
 			);
 		};
 /* End PBXProject section */
@@ -121,6 +171,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				553B6F6123805089002A756F /* main.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		553B6F67238050DB002A756F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				553B6F6E238050DB002A756F /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,6 +320,28 @@
 			};
 			name = Release;
 		};
+		553B6F70238050DB002A756F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RCKXACKVZS;
+				ENABLE_HARDENED_RUNTIME = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		553B6F71238050DB002A756F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RCKXACKVZS;
+				ENABLE_HARDENED_RUNTIME = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -274,11 +354,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		553B6F6423805089002A756F /* Build configuration list for PBXNativeTarget "AdairNetworking" */ = {
+		553B6F6423805089002A756F /* Build configuration list for PBXNativeTarget "AdairServer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				553B6F6523805089002A756F /* Debug */,
 				553B6F6623805089002A756F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		553B6F6F238050DB002A756F /* Build configuration list for PBXNativeTarget "AdairClient" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				553B6F70238050DB002A756F /* Debug */,
+				553B6F71238050DB002A756F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
