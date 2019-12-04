@@ -22,7 +22,9 @@ struct ClientSession {
 class Server {
     var listener: NWListener?
     var clients = [String:ClientSession]()
-    
+    var preLoginTimeout = TimeInterval(5.0)
+    var postLoginTimeout = TimeInterval(30.0)
+
     func listen(on port: Int) {
         self.listener = try! NWListener(using: .udp, on: NWEndpoint.Port(rawValue: UInt16(port))!)
         
@@ -72,22 +74,34 @@ class Server {
     }
     
     func receiveUDP(on connection: NWConnection) {
-        connection.receiveMessage { [weak connection] data, context, isComplete, error in
-            if (isComplete) {
-                if (data != nil) {
-                    let backToString = String(decoding: data!, as: UTF8.self)
-                    print("Received: \(backToString)")
+        connection.receiveMessage { [weak connection] data, context, isComplete, nwError in
+            if let nwError = nwError { print("error: \(nwError)"); connection?.cancel(); return }
+            if isComplete {
+                if let data = data, data.count > 0 {
+                    print("Received: \(data)")
+                    if let command = command(from: data) {
+                        do {
+                            try command.handle(on: connection!)
+                        } catch {
+                            print("Error \(error) in command. Disconnecting.")
+                            connection!.cancel()
+                        }
+                    } else {
+                        print("Error no command. Disconnecting.")
+                        connection!.cancel()
+                    }
                 } else {
-                    print("Data is nil")
+                    print("Data is empty")
                 }
-                self.sendUDP("Server loves you!", on: connection!)
-                connection!.cancel()
             } else {
                 print("Not complete.")
             }
         }
     }
 }
+
+PingCommand.register()
+ChatMessageCommand.register()
 
 let server = Server()
 server.listen(on: 55555)

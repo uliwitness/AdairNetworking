@@ -14,11 +14,12 @@ class Client {
     
     func connect(to url: URL) {
         let host: NWEndpoint.Host = .name(url.host!, nil)
-        let port = NWEndpoint.Port(rawValue: UInt16( url.port ?? 55555))!
+        let port = NWEndpoint.Port(rawValue: UInt16(url.port ?? 55555))!
         
         self.connection = NWConnection(host: host, port: port, using: .udp)
         
         self.connection?.stateUpdateHandler = { newState in
+            print("State update")
             switch newState {
             case .waiting(let error):
                 print("Waiting: \(error)")
@@ -26,7 +27,10 @@ class Client {
                 print("Failed: \(error)")
             case .ready:
                 print("Ready.")
-                self.sendUDP("Hello!")
+                let pingCommand = PingCommand()
+                try! pingCommand.send(on: self.connection!) { _ in
+                    try! ChatMessageCommand(message: "Hey you, with the wedding dress on.").send(on: self.connection!)
+                }
                 self.receiveUDP()
             case .setup:
                 print("Setup.")
@@ -42,39 +46,39 @@ class Client {
         self.connection?.start(queue: .global())
         print("Client Started.")
     }
-    
-    func sendUDP(_ content: Data) {
-        self.connection?.send(content: content, completion: NWConnection.SendCompletion.contentProcessed({ error in
-            if let error = error {
-                print("Error sending data: \(error)")
-            } else {
-                print("Data was sent.")
-            }
-        }))
-    }
-    
-    func sendUDP(_ content: String) {
-        print("Sending: \(content)")
-        let contentToSendUDP = content.data(using: String.Encoding.utf8)!
-        sendUDP(contentToSendUDP)
-    }
-    
+        
     func receiveUDP() {
-        self.connection?.receiveMessage { [weak connection] data, context, isComplete, error in
+        print("Registering to receive")
+        connection!.receiveMessage { [weak connection] data, context, isComplete, nwError in
+            print("Receiving UDP")
+            if let nwError = nwError { print("error: \(nwError)"); connection?.cancel(); return }
             if isComplete {
-                if data != nil {
-                    let backToString = String(data: data!, encoding: .utf8)!
-                    print("Received: \(backToString)")
+                if let data = data, data.count > 0 {
+                    print("Received: \(data)")
+                    if let command = command(from: data) {
+                        do {
+                            try command.handle(on: connection!)
+                        } catch {
+                            print("Error \(error) in command. Disconnecting.")
+                            connection?.cancel()
+                        }
+                    } else {
+                        print("Unknown command. Disconnecting.")
+                        connection?.cancel()
+                    }
                 } else {
-                    print("Data is nil")
+                    print("Data is empty")
                 }
-                connection?.cancel()
             } else {
                 print("Not complete.")
             }
         }
+        print("Registered to receive")
     }
 }
+
+PingCommand.register()
+ChatMessageCommand.register()
 
 let client = Client()
 client.connect(to: URL(string: "udp://127.0.0.1:55555")!)

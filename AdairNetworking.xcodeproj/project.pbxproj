@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		553B6F6123805089002A756F /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553B6F6023805089002A756F /* main.swift */; };
 		553B6F6E238050DB002A756F /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553B6F6D238050DB002A756F /* main.swift */; };
+		5591393B2386CF4D003D9E30 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5591393A2386CF4D003D9E30 /* Command.swift */; };
+		5591393C2386CF4D003D9E30 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5591393A2386CF4D003D9E30 /* Command.swift */; };
+		5591393E2386D202003D9E30 /* Stream+ReadTyped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5591393D2386D202003D9E30 /* Stream+ReadTyped.swift */; };
+		5591393F2386D202003D9E30 /* Stream+ReadTyped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5591393D2386D202003D9E30 /* Stream+ReadTyped.swift */; };
+		559139412386E46E003D9E30 /* PingCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559139402386E46E003D9E30 /* PingCommand.swift */; };
+		559139422386E46E003D9E30 /* PingCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559139402386E46E003D9E30 /* PingCommand.swift */; };
+		559139442386F3D5003D9E30 /* ChatMessageCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559139432386F3D5003D9E30 /* ChatMessageCommand.swift */; };
+		559139452386F3D5003D9E30 /* ChatMessageCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559139432386F3D5003D9E30 /* ChatMessageCommand.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,6 +45,10 @@
 		553B6F6023805089002A756F /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		553B6F6B238050DB002A756F /* AdairClient */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AdairClient; sourceTree = BUILT_PRODUCTS_DIR; };
 		553B6F6D238050DB002A756F /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		5591393A2386CF4D003D9E30 /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
+		5591393D2386D202003D9E30 /* Stream+ReadTyped.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Stream+ReadTyped.swift"; sourceTree = "<group>"; };
+		559139402386E46E003D9E30 /* PingCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingCommand.swift; sourceTree = "<group>"; };
+		559139432386F3D5003D9E30 /* ChatMessageCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageCommand.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +72,10 @@
 		553B6F5423805089002A756F = {
 			isa = PBXGroup;
 			children = (
+				5591393A2386CF4D003D9E30 /* Command.swift */,
+				5591393D2386D202003D9E30 /* Stream+ReadTyped.swift */,
+				559139402386E46E003D9E30 /* PingCommand.swift */,
+				559139432386F3D5003D9E30 /* ChatMessageCommand.swift */,
 				553B6F5F23805089002A756F /* AdairServer */,
 				553B6F6C238050DB002A756F /* AdairClient */,
 				553B6F5E23805089002A756F /* Products */,
@@ -135,7 +151,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1100;
-				LastUpgradeCheck = 1100;
+				LastUpgradeCheck = 1120;
 				ORGANIZATIONNAME = "Uli Kusterer";
 				TargetAttributes = {
 					553B6F5C23805089002A756F = {
@@ -170,7 +186,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				559139442386F3D5003D9E30 /* ChatMessageCommand.swift in Sources */,
+				5591393E2386D202003D9E30 /* Stream+ReadTyped.swift in Sources */,
+				559139412386E46E003D9E30 /* PingCommand.swift in Sources */,
 				553B6F6123805089002A756F /* main.swift in Sources */,
+				5591393B2386CF4D003D9E30 /* Command.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -178,7 +198,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				559139452386F3D5003D9E30 /* ChatMessageCommand.swift in Sources */,
+				5591393F2386D202003D9E30 /* Stream+ReadTyped.swift in Sources */,
+				559139422386E46E003D9E30 /* PingCommand.swift in Sources */,
 				553B6F6E238050DB002A756F /* main.swift in Sources */,
+				5591393C2386CF4D003D9E30 /* Command.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
